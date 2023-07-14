@@ -1,5 +1,4 @@
 import TextField from '@mui/material/TextField';
-import fDOptions from '../../utils/FoodDrink/Options';
 import MenuItem from '@mui/material/MenuItem';
 import { Box, Button, Typography } from '@mui/material';
 import foodDrinkDropMenu from '../../utils/FoodDrink/DropMenu';
@@ -7,6 +6,7 @@ import { useRef, FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPerson } from '../../slices/peopleSlice';
 import PersonType from '../../utils/Types/PersonType';
+import validateType from './WeightValidator';
 
 type Props = {
   handleClose: () => void;
@@ -26,8 +26,8 @@ const NewForm = ({handleClose} : Props) => {
       id: crypto.randomUUID(),
       name: nameRef.current?.value || "",
       contact: contactRef.current?.value || "",
-      food: foodRef.current?.value || "",
-      drinks: drinksRef.current?.value || "",
+      food: validateType(foodRef.current?.value),
+      drinks: validateType(drinksRef.current?.value),
     };
     dispatch(addPerson({person: newPerson}));
     handleClose();
@@ -51,7 +51,7 @@ const NewForm = ({handleClose} : Props) => {
           id="drinks"
           select
           label="Drinks"
-          defaultValue={fDOptions.none}
+          defaultValue={"none"}
           inputRef={drinksRef}
         >
           {foodDrinkDropMenu.map((option) => (
@@ -66,7 +66,7 @@ const NewForm = ({handleClose} : Props) => {
           id="food"
           select
           label="Food"
-          defaultValue={fDOptions.none}
+          defaultValue={"none"}
           inputRef={foodRef}
         >
           {foodDrinkDropMenu.map((option) => (

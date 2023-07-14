@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SAMPLE_DATA from "../Data/SAMPLE_DATA";
 
-const initialState = {people: SAMPLE_DATA}; 
+const initialState= {people: SAMPLE_DATA}; 
 
 export const themeModeSlice = createSlice({
   name: "theme",

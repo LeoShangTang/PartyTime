@@ -4,7 +4,7 @@ import { Box, Button, TextField, MenuItem } from "@mui/material";
 import { updatePerson } from "../../slices/peopleSlice";
 import foodDrinkDropMenu from "../../utils/FoodDrink/DropMenu";
 import PersonType from "../../utils/Types/PersonType";
-  
+import validateType from "./WeightValidator";
 
 type Props = {
     person: PersonType,
@@ -33,14 +33,16 @@ const EditPerson = ({person, handleClose} : Props) => {
   const foodRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
+
+  
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const updatedData: PersonType = {
       id: person.id,
       name: nameRef.current?.value || "",
       contact: contactRef.current?.value || "",
-      food: foodRef.current?.value || "",
-      drinks: drinksRef.current?.value || "",
+      food: validateType(foodRef.current?.value),
+      drinks: validateType(drinksRef.current?.value),
     };
     dispatch(updatePerson({updatedData}))
     handleClose();

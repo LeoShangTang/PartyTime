@@ -1,21 +1,19 @@
-import fDOptions from "./Options";
-
 const foodDrinkDropMenu = [
     {
-      value: fDOptions.heavy,
-      label: fDOptions.heavy,
+      value: "heavy",
+      label: "heavy",
     },
     {
-      value: fDOptions.medium,
-      label: fDOptions.medium,
+      value: "medium",
+      label: "medium",
     },
     {
-      value: fDOptions.light,
-      label: fDOptions.light,
+      value: "light",
+      label: "light",
     },
     {
-      value: fDOptions.none,
-      label: fDOptions.none,
+      value: "none",
+      label: "none",
     },
   ];
 

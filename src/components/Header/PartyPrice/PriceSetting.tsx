@@ -58,6 +58,7 @@ const PriceSetting = ({handleClose, totalDrinkPrice, totalFoodPrice} : Props) =>
         inputRef={totalFoodPriceRef}
         InputProps={{
           startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          inputProps: { min: 0, step: 10 },
         }}
       />
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
