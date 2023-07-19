@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { Box, TextField, MenuItem, IconButton } from "@mui/material";
+import { Box, TextField, MenuItem, IconButton, InputAdornment } from "@mui/material";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import foodDrinkDropMenu from "../../utils/FoodDrink/DropMenu";
 import EditPerson from './UpdatePerson';
@@ -40,70 +40,100 @@ const MoreInfo = ({person} : Props) => {
         <OpenInNewIcon />
       </IconButton>
       <Modal open={openMoreInfo} onClose={handleCloseMoreInfo}>
-        <Box sx={style}>
-          <TextField
-            required
-            disabled
-            label="Name"
-            defaultValue={person.name}
-            variant="standard"
-          />
-          <TextField
-            required
-            disabled
-            label="Contact"
-            defaultValue={person.contact}
-            variant="standard"
-          />
-          <TextField
-            required
-            disabled
-            select
-            label="Drinks"
-            defaultValue={person.drinks}
-            variant="standard"
-          >
-            {foodDrinkDropMenu.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
+        <>
+          <Box sx={style}>
+            <TextField
+              required
+              disabled
+              label="Name"
+              defaultValue={person.name}
+              variant="standard"
+            />
+            <TextField
+              required
+              disabled
+              label="Contact"
+              defaultValue={person.contact}
+              variant="standard"
+            />
+            <TextField
+              required
+              disabled
+              select
+              label="Drinks"
+              defaultValue={person.drinks}
+              variant="standard"
+            >
+              {foodDrinkDropMenu.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
-          <TextField
-            required
-            disabled
-            select
-            label="Food"
-            defaultValue={person.food}
-            variant="standard"
-          >
-            {foodDrinkDropMenu.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Button
-              variant="outlined"
-              sx={{ width: "45%" }}
-              onClick={handleOpenEditForm}
+            <TextField
+              required
+              disabled
+              select
+              label="Food"
+              defaultValue={person.food}
+              variant="standard"
             >
-              Edit
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{ width: "45%" }}
-              onClick={handleCloseMoreInfo}
-            >
-              Ok
-            </Button>
+              {foodDrinkDropMenu.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              required
+              disabled
+              type="number"
+              label="Price of Drinks Owed"
+              defaultValue={0}
+              variant="standard"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">$</InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              required
+              disabled
+              type="number"
+              label="Price of Food Owed"
+              defaultValue={0}
+              variant="standard"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">$</InputAdornment>
+                ),
+              }}
+            />
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Button
+                variant="outlined"
+                sx={{ width: "45%" }}
+                onClick={handleOpenEditForm}
+              >
+                Edit
+              </Button>
+              <Button
+                variant="outlined"
+                sx={{ width: "45%" }}
+                onClick={handleCloseMoreInfo}
+              >
+                Ok
+              </Button>
+            </Box>
           </Box>
-        </Box>
+        </>
       </Modal>
       <Modal open={openEditForm} onClose={handleCloseEditForm}>
-        <EditPerson person={person} handleClose={handleCloseEditForm} />
+        <>
+          <EditPerson person={person} handleClose={handleCloseEditForm} />
+        </>
       </Modal>
     </>
   );

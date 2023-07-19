@@ -31,7 +31,7 @@ const Header = () => {
   
   return (
     <>
-    <PriceCard/>
+      <PriceCard />
       <NewButton handleOpen={handleFormOpen} />
       <SettingsButton handleOpen={handleSettingOpen} />
       <Modal
@@ -39,18 +39,22 @@ const Header = () => {
         onClose={handleSettingClose}
         sx={{ justifyContent: "center" }}
       >
-        <Box sx={style}>
-          <SettingsForm handleClose={handleSettingClose} />
-        </Box>
+        <>
+          <Box sx={style}>
+            <SettingsForm handleClose={handleSettingClose} />
+          </Box>
+        </>
       </Modal>
       <Modal
         open={formOpen}
         onClose={handleFormClose}
         sx={{ justifyContent: "center" }}
       >
-        <Box sx={style}>
-          <NewForm handleClose={handleFormClose} />
-        </Box>
+        <>
+          <Box sx={style}>
+            <NewForm handleClose={handleFormClose} />
+          </Box>
+        </>
       </Modal>
     </>
   );

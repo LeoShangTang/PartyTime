@@ -24,5 +24,4 @@ const totalPriceSlice = createSlice({
 })
 
 export const { updateTotalPrice } = totalPriceSlice.actions;
-
 export default totalPriceSlice.reducer;

@@ -6,6 +6,7 @@ import SettingTextField from './SettingsTextField';
 import "./SettingsForm.css"
 import ThemeChanger from './Theme/ThemeChanger';
 import { updateFoodDrinkSetting } from '../../../slices/foodDrinkSettingSlice';
+import { createSelector } from '@reduxjs/toolkit';
 
 type Props = {
   handleClose: () => void,
@@ -28,13 +29,18 @@ const SettingsForm = ({handleClose} : Props) => {
     handleClose();
   };
 
-  const foodDrinkSettings = useSelector((state: RootState) => {
-    return {
-      heavy: state.foodDrinkSetting.heavy,
-      medium: state.foodDrinkSetting.medium,
-      light: state.foodDrinkSetting.light,
-    };
-  });
+  const foodDrinkSettingsSelector = createSelector(
+    (state: RootState) => state.foodDrinkSetting.heavy,
+    (state: RootState) => state.foodDrinkSetting.medium,
+    (state: RootState) => state.foodDrinkSetting.light,
+    (heavy, medium, light) => ({
+      heavy,
+      medium,
+      light,
+    })
+  )
+
+  const foodDrinkSettings = useSelector(foodDrinkSettingsSelector)
 
     return (
       <Box

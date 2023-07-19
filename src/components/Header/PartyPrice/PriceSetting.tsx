@@ -1,7 +1,7 @@
 import { Box, Button, Typography, FormLabel, TextField, InputAdornment } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { FormEvent, useRef } from 'react';
-
+import { RootState } from '../../../store';
 import { updateTotalPrice } from '../../../slices/totalPricesSettingSlice';
 
 type Props = {
@@ -38,7 +38,11 @@ const PriceSetting = ({handleClose, totalDrinkPrice, totalFoodPrice} : Props) =>
 
   return (
     <Box component="form" sx={style} onSubmit={handleSubmit}>
-      <Typography variant="h6" component="h2" sx={{ fontWeight: "bold", textAlign: "center" }}>
+      <Typography
+        variant="h6"
+        component="h2"
+        sx={{ fontWeight: "bold", textAlign: "center" }}
+      >
         Price Settings
       </Typography>
       <TextField

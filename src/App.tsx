@@ -3,7 +3,6 @@ import { RootState } from "./store";
 import { useSelector } from "react-redux";
 import { createTheme, ThemeProvider, Box} from "@mui/material";
 import './App.css'
-import CssBaseline from '@mui/material/CssBaseline';
 import Header from "./components/Header/Header";
 
 function App() {
@@ -20,7 +19,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ height: "100vh", width: "100vw" }}>
+      <Box sx={{ height: "100vh", width: "100vw", backgroundColor: "background.default" }}>
         <Header />
         <AllPersons />
       </Box>
