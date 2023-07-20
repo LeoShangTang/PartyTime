@@ -1,10 +1,9 @@
-import { Card, CardContent, CardActions, Grid, Typography, TextField, InputAdornment, IconButton, Modal } from "@mui/material";
 import { useSelector } from "react-redux";
-import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "../../../store";
-import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
+import { Card, CardContent, CardActions, TextField, InputAdornment, IconButton, Modal } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
 import PriceSetting from "./PriceSetting";
+import { totalPriceSelector } from "../../../slices/totalPricesSettingSlice";
 
 const cardStyle = { display: 'flex', width: 300, height:70, flexDirection: "row", justifyContent: 'space-between', boxShadow: 2, borderRadius: 3, m:1, p:1 };
 
@@ -12,18 +11,7 @@ const PriceCard = () => {
 
     const [openPriceEditor, setOpenPriceEditor] = useState(false);
     const handleOpenPriceEditor = () => setOpenPriceEditor(true);
-    const handleClosePriceEditor = () => setOpenPriceEditor(false);
-
-    const totalPriceSelector = createSelector(
-      (state: RootState) => state.totalPrice.totalDrinkPrice,
-      (state: RootState) => state.totalPrice.totalFoodPrice,
-      (totalDrinkPrice, totalFoodPrice) => ({
-        totalDrinkPrice,
-        totalFoodPrice,
-        totalPrice: totalFoodPrice + totalDrinkPrice
-      })
-    );
-    
+    const handleClosePriceEditor = () => setOpenPriceEditor(false);    
     const prices = useSelector(totalPriceSelector);
 
     return (
@@ -31,7 +19,6 @@ const PriceCard = () => {
         <Card sx={cardStyle}>
           <CardContent sx={{ alignSelf: "center" }}>
             <TextField
-              id="filled-number"
               label="Total Price"
               type="number"
               size="small"
@@ -59,10 +46,6 @@ const PriceCard = () => {
             />
           </>
         </Modal>
-
-        {/* <Modal open={openEditForm} onClose={handleCloseEditForm}>
-        <EditPerson person={person} handleClose={handleCloseEditForm} />
-    </Modal> */}
       </>
     );
 }

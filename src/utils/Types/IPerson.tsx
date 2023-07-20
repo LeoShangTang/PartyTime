@@ -1,4 +1,4 @@
-type PersonType = {
+type IPerson = {
   id: string;
   name: string;
   contact: string;
@@ -6,4 +6,4 @@ type PersonType = {
   drinks: "heavy" | "medium" | "light" | "none";
 };
 
-export default PersonType;
+export default IPerson;

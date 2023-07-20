@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 type totalPriceType = {
     totalDrinkPrice: number,
@@ -23,5 +25,14 @@ const totalPriceSlice = createSlice({
     }
 })
 
+export const totalPriceSelector = createSelector(
+    (state: RootState) => state.totalPrice.totalDrinkPrice,
+    (state: RootState) => state.totalPrice.totalFoodPrice,
+    (totalDrinkPrice: number, totalFoodPrice: number) => ({
+      totalDrinkPrice,
+      totalFoodPrice,
+      totalPrice: totalFoodPrice + totalDrinkPrice
+    })
+  );
 export const { updateTotalPrice } = totalPriceSlice.actions;
 export default totalPriceSlice.reducer;

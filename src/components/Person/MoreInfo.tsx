@@ -4,15 +4,19 @@ import Modal from "@mui/material/Modal";
 import { Box, TextField, MenuItem, IconButton, InputAdornment } from "@mui/material";
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import foodDrinkDropMenu from "../../utils/FoodDrink/DropMenu";
-import EditPerson from './UpdatePerson';
-import PersonType from '../../utils/Types/PersonType';
+import UpdatePerson from './UpdatePerson';
+import IPerson from '../../utils/Types/IPerson';
 
 type Props = {
-  person: PersonType,
+  person: IPerson,
+  prices: {
+    drinkPrice: number,
+    foodPrice: number,
+  }
 }
 
 
-const style = {
+const boxStyle = {
   position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
@@ -25,14 +29,14 @@ const style = {
   "& > :not(style)": { m: 2, width: "90%" }
 };
 
-const MoreInfo = ({person} : Props) => {
+const MoreInfo = ({person, prices} : Props) => {
   const [openMoreInfo, setOpenMoreInfo] = useState(false);
   const handleOpenMoreInfo = () => setOpenMoreInfo(true);
   const handleCloseMoreInfo = () => setOpenMoreInfo(false);
 
   const [openEditForm, setOpenEditForm] = useState(false);
   const handleOpenEditForm = () => setOpenEditForm(true);
-  const handleCloseEditForm = () => {setOpenEditForm(false); setOpenMoreInfo(false)};
+  const handleCloseEditForm = () => {setOpenEditForm(false);setOpenMoreInfo(false);};
 
   return (
     <>
@@ -41,7 +45,7 @@ const MoreInfo = ({person} : Props) => {
       </IconButton>
       <Modal open={openMoreInfo} onClose={handleCloseMoreInfo}>
         <>
-          <Box sx={style}>
+          <Box sx={boxStyle}>
             <TextField
               required
               disabled
@@ -70,7 +74,6 @@ const MoreInfo = ({person} : Props) => {
                 </MenuItem>
               ))}
             </TextField>
-
             <TextField
               required
               disabled
@@ -90,7 +93,7 @@ const MoreInfo = ({person} : Props) => {
               disabled
               type="number"
               label="Price of Drinks Owed"
-              defaultValue={0}
+              defaultValue={(Math.round(prices.drinkPrice * 100) / 100).toFixed(2)}
               variant="standard"
               InputProps={{
                 startAdornment: (
@@ -103,7 +106,7 @@ const MoreInfo = ({person} : Props) => {
               disabled
               type="number"
               label="Price of Food Owed"
-              defaultValue={0}
+              defaultValue={(Math.round(prices.foodPrice * 100) / 100).toFixed(2)}
               variant="standard"
               InputProps={{
                 startAdornment: (
@@ -112,18 +115,10 @@ const MoreInfo = ({person} : Props) => {
               }}
             />
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Button
-                variant="outlined"
-                sx={{ width: "45%" }}
-                onClick={handleOpenEditForm}
-              >
+              <Button variant="outlined" sx={{ width: "45%" }} onClick={handleOpenEditForm}>
                 Edit
               </Button>
-              <Button
-                variant="outlined"
-                sx={{ width: "45%" }}
-                onClick={handleCloseMoreInfo}
-              >
+              <Button variant="outlined" sx={{ width: "45%" }} onClick={handleCloseMoreInfo}>
                 Ok
               </Button>
             </Box>
@@ -132,7 +127,11 @@ const MoreInfo = ({person} : Props) => {
       </Modal>
       <Modal open={openEditForm} onClose={handleCloseEditForm}>
         <>
-          <EditPerson person={person} handleClose={handleCloseEditForm} />
+          <UpdatePerson
+            person={person}
+            prices={prices}
+            handleClose={handleCloseEditForm}
+          />
         </>
       </Modal>
     </>

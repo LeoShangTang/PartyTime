@@ -1,13 +1,12 @@
+import {Box, Modal} from '@mui/material';
 import NewButton from "./Buttons/NewButton";
 import NewForm from "../Person/NewPersonForm";
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import SettingsForm from "./Settings/SettingsForm";
 import { useState } from "react";
 import SettingsButton from "./Buttons/SettingsButton";
 import PriceCard from "./PartyPrice/PriceCard";
 
-const style = {
+const boxStyle = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
@@ -31,16 +30,20 @@ const Header = () => {
   
   return (
     <>
-      <PriceCard />
-      <NewButton handleOpen={handleFormOpen} />
-      <SettingsButton handleOpen={handleSettingOpen} />
-      <Modal
-        open={settingOpen}
-        onClose={handleSettingClose}
-        sx={{ justifyContent: "center" }}
-      >
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Box sx={{ width: "100%", maxWidth: 500, p: 0.5, mr: 2 }}>
+          <div
+            style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}
+          >
+            <PriceCard />
+            <NewButton handleOpen={handleFormOpen} />
+            <SettingsButton handleOpen={handleSettingOpen} />
+          </div>
+        </Box>
+      </div>
+      <Modal open={settingOpen} onClose={handleSettingClose} sx={{ justifyContent: "center" }}>
         <>
-          <Box sx={style}>
+          <Box sx={boxStyle}>
             <SettingsForm handleClose={handleSettingClose} />
           </Box>
         </>
@@ -51,7 +54,7 @@ const Header = () => {
         sx={{ justifyContent: "center" }}
       >
         <>
-          <Box sx={style}>
+          <Box sx={boxStyle}>
             <NewForm handleClose={handleFormClose} />
           </Box>
         </>

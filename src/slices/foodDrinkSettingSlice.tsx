@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 type foodDrinkState = {
     heavy: number,
@@ -27,6 +29,14 @@ export const foodDrinkSlice = createSlice({
     }
 })
 
+export const foodDrinkSettingsSelector = createSelector(
+    (state: RootState) => state.foodDrinkSetting.heavy,
+    (state: RootState) => state.foodDrinkSetting.medium,
+    (state: RootState) => state.foodDrinkSetting.light,
+    (heavy, medium, light) => ({
+      heavy, medium, light,
+    })
+  )
 
 export const { updateFoodDrinkSetting } = foodDrinkSlice.actions;
 

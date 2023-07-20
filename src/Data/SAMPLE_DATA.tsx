@@ -1,6 +1,6 @@
-import PersonType from "../utils/Types/PersonType";
+import IPerson from "../utils/Types/IPerson";
 
-const SAMPLE_DATA: PersonType[]= [
+const SAMPLE_DATA: IPerson[]= [
     {
         id: '1',
         name: 'Michael',

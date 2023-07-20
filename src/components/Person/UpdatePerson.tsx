@@ -1,17 +1,21 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { Box, Button, TextField, MenuItem } from "@mui/material";
+import { Box, Button, TextField, MenuItem, InputAdornment } from "@mui/material";
 import { updatePerson } from "../../slices/peopleSlice";
 import foodDrinkDropMenu from "../../utils/FoodDrink/DropMenu";
-import PersonType from "../../utils/Types/PersonType";
+import IPerson from "../../utils/Types/IPerson";
 import validateType from "./WeightValidator";
 
 type Props = {
-    person: PersonType,
+    person: IPerson,
     handleClose: () => void,
+    prices: {
+      drinkPrice: number,
+      foodPrice: number
+    }
 }
 
-const style = {
+const boxStyle = {
     position: "absolute" as "absolute",
     top: "50%",
     left: "50%",
@@ -24,34 +28,33 @@ const style = {
     "& > :not(style)": { m: 2, width: "90%" }
   };
   
-
-const EditPerson = ({person, handleClose} : Props) => {
-  
+const EditPerson = ({person, handleClose, prices} : Props) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const contactRef = useRef<HTMLInputElement>(null);
   const drinksRef = useRef<HTMLInputElement>(null);
   const foodRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const updatedData: IPerson = {
+        id: person.id,
+        name: nameRef.current?.value || "",
+        contact: contactRef.current?.value || "",
+        food: validateType(foodRef.current?.value),
+        drinks: validateType(drinksRef.current?.value),
+      };
+      dispatch(updatePerson({ updatedData }));
+      handleClose();
+    },
+    [person.id, dispatch, handleClose]
+  );
 
-  
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const updatedData: PersonType = {
-      id: person.id,
-      name: nameRef.current?.value || "",
-      contact: contactRef.current?.value || "",
-      food: validateType(foodRef.current?.value),
-      drinks: validateType(drinksRef.current?.value),
-    };
-    dispatch(updatePerson({updatedData}))
-    handleClose();
-  }
-
-    return (
-      <div>
-        <Box sx={style} component="form" onSubmit={handleSubmit}>
-          <TextField
+  return (
+    <div>
+      <Box sx={boxStyle} component="form" onSubmit={handleSubmit}>
+        <TextField
           required
           label="Name"
           defaultValue={person.name}
@@ -79,7 +82,6 @@ const EditPerson = ({person, handleClose} : Props) => {
             </MenuItem>
           ))}
         </TextField>
-
         <TextField
           required
           select
@@ -94,21 +96,39 @@ const EditPerson = ({person, handleClose} : Props) => {
             </MenuItem>
           ))}
         </TextField>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Button variant="outlined" color="success" sx={{ width: "45%" }} type="submit">
-              Update
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{ width: "45%" }}
-              onClick={handleClose}
-            >
-              Cancel
-            </Button>
-          </Box>
+        <TextField
+          required
+          disabled
+          type="number"
+          label="Price of Drinks Owed"
+          defaultValue={(Math.round(prices.drinkPrice * 100) / 100).toFixed(2)}
+          variant="standard"
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
+        />
+        <TextField
+          required
+          disabled
+          type="number"
+          label="Price of Food Owed"
+          defaultValue={(Math.round(prices.foodPrice * 100) / 100).toFixed(2)}
+          variant="standard"
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
+        />
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Button variant="outlined" color="success" sx={{ width: "45%" }} type="submit">
+            Update
+          </Button>
+          <Button variant="outlined" sx={{ width: "45%" }} onClick={handleClose}>
+            Cancel
+          </Button>
         </Box>
-      </div>
-    );
+      </Box>
+    </div>
+  );
 }
 
 export default EditPerson

@@ -2,10 +2,10 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import { Box, Button, Typography } from '@mui/material';
 import foodDrinkDropMenu from '../../utils/FoodDrink/DropMenu';
-import { useRef, FormEvent } from 'react';
+import { useRef, FormEvent, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPerson } from '../../slices/peopleSlice';
-import PersonType from '../../utils/Types/PersonType';
+import IPerson from '../../utils/Types/IPerson';
 import validateType from './WeightValidator';
 
 type Props = {
@@ -18,11 +18,11 @@ const NewForm = ({handleClose} : Props) => {
   const contactRef = useRef<HTMLInputElement>(null);
   const drinksRef = useRef<HTMLInputElement>(null);
   const foodRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newPerson: PersonType = {
+    const newPerson: IPerson = {
       id: crypto.randomUUID(),
       name: nameRef.current?.value || "",
       contact: contactRef.current?.value || "",
@@ -31,44 +31,23 @@ const NewForm = ({handleClose} : Props) => {
     };
     dispatch(addPerson({person: newPerson}));
     handleClose();
-  };
+  }, [handleClose, dispatch]);
 
     return (
-      <Box
-        component="form"
-        sx={{
-          "& > :not(style)": { m: 2,  width: "90%" },
-        }}
-        onSubmit={handleSubmit}
-      >
+      <Box component="form" sx={{ "& > :not(style)": { m: 2,  width: "90%" }}} onSubmit={handleSubmit}>
         <Typography variant="h6" component="h2" sx={{textAlign:"center"}}>
           Add Person
         </Typography>
-        <TextField required id="name" label="Name" inputRef={nameRef}/>
-        <TextField required id="contact" label="Contact" inputRef={contactRef}/>
-        <TextField
-          required
-          id="drinks"
-          select
-          label="Drinks"
-          defaultValue={"none"}
-          inputRef={drinksRef}
-        >
+        <TextField required label="Name" inputRef={nameRef}/>
+        <TextField required label="Contact" inputRef={contactRef}/>
+        <TextField required select label="Drinks" defaultValue={"none"} inputRef={drinksRef}>
           {foodDrinkDropMenu.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
         </TextField>
-
-        <TextField
-          required
-          id="food"
-          select
-          label="Food"
-          defaultValue={"none"}
-          inputRef={foodRef}
-        >
+        <TextField required select label="Food" defaultValue={"none"} inputRef={foodRef}>
           {foodDrinkDropMenu.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
@@ -79,11 +58,7 @@ const NewForm = ({handleClose} : Props) => {
           <Button variant="outlined" color="success" sx={{ width: "45%" }} type="submit">
             Add
           </Button>
-          <Button
-            variant="outlined"
-            sx={{ width: "45%" }}
-            onClick={handleClose}
-          >
+          <Button variant="outlined" sx={{ width: "45%" }} onClick={handleClose}>
             Cancel
           </Button>
         </Box>
