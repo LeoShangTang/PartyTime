@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-type totalPriceType = {
+type ITotalPrice = {
     totalDrinkPrice: number,
     totalFoodPrice: number,
 }
 
-const initialState: totalPriceType = {
+const initialState: ITotalPrice = {
     totalDrinkPrice: 0,
     totalFoodPrice: 0,
   };

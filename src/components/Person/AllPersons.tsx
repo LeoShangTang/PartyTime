@@ -10,7 +10,7 @@ const AllPersons = () => {
 
   const dispatch = useDispatch();
   const persons = useSelector((state: RootState) => {
-    return state.people.people; // Terrible naming conventions... Change later
+    return state.people.persons; // Terrible naming conventions... Change later
   });
   const weightDecimals = useSelector(weightDecimalsSelector);
   const prices = useSelector((state: RootState) => state.totalPrice)

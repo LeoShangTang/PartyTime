@@ -24,7 +24,7 @@ const SettingTextField = ({isDisabled = false, label, defaultValue, inputRef = n
           }}
           InputProps={{
             endAdornment: <InputAdornment position="end">%</InputAdornment>,
-            inputProps: { min: 0, max: 100, step: 10, defaultValue },
+            inputProps: { min: 0, max: 100, step: 5, defaultValue },
           }}
         />
       </>

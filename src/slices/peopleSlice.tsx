@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import SAMPLE_DATA from "../Data/SAMPLE_DATA";
 
-const initialState= {people: SAMPLE_DATA}; 
+const initialState= {persons: SAMPLE_DATA}; 
 
 export const themeModeSlice = createSlice({
   name: "theme",
@@ -9,17 +9,17 @@ export const themeModeSlice = createSlice({
   reducers: {
     removePerson: (state, action) => {
         const { id } = action.payload;
-        state.people = state.people.filter((person) => person.id !== id)
+        state.persons = state.persons.filter((person) => person.id !== id)
     },
     addPerson: (state, action) => {
         const { person } = action.payload;
-        state.people = [person , ...state.people]
+        state.persons = [person , ...state.persons]
     },
     updatePerson: (state, action) => {
         const { updatedData } = action.payload;
-        const personIndex = state.people.findIndex((person) => person.id === updatedData.id);
+        const personIndex = state.persons.findIndex((person) => person.id === updatedData.id);
         if (personIndex !== -1) {
-            state.people[personIndex] = { ...state.people[personIndex], ...updatedData };
+            state.persons[personIndex] = { ...state.persons[personIndex], ...updatedData };
         }
     }
   },

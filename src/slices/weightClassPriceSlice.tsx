@@ -58,13 +58,6 @@ const weightClassPriceSlice = createSlice({
       const mediumFoodPrice = weightDecimals.medium * foodRatio;
       const heavyFoodPrice = weightDecimals.heavy * foodRatio;
 
-      console.log(lightDrinkPrice);
-      console.log(mediumDrinkPrice);
-      console.log(heavyDrinkPrice);
-      console.log(lightFoodPrice);
-      console.log(mediumFoodPrice);
-      console.log(heavyFoodPrice);
-
       state.drinkPrices = {
         light: lightDrinkPrice,
         medium: mediumDrinkPrice,
@@ -76,18 +69,10 @@ const weightClassPriceSlice = createSlice({
         heavy: heavyFoodPrice,
       };
     },
-    printStuff: (state) => {
-      console.log(`${state.drinkPrices.heavy}`);
-      console.log(`${state.drinkPrices.medium}`);
-      console.log(`${state.drinkPrices.light}`);
-      console.log(`${state.foodPrices.heavy}`);
-      console.log(`${state.foodPrices.medium}`);
-      console.log(`${state.foodPrices.light}`);
-    },
   },
 });
 
-export const {calculateWeightClassPrices, printStuff} = weightClassPriceSlice.actions
+export const {calculateWeightClassPrices} = weightClassPriceSlice.actions
 
 export const weightDecimalsSelector = createSelector(
   (state: RootState) => state.foodDrinkSetting.heavy,

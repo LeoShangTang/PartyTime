@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-type foodDrinkState = {
+type IFoodDrinkState = {
     heavy: number,
     medium: number,
     light: number,
     none: number
 }
 
-const initialState: foodDrinkState = {
+const initialState: IFoodDrinkState = {
     heavy: 60,
     medium: 30,
     light: 10,
