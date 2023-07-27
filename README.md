@@ -65,3 +65,8 @@ Some code can be refactored into smaller React components. This will help clean 
 At present, the application only considers food and drink prices. However, there is room for expansion based on user demand.
 
 Let's get the party started with Party Time App! 🎉🎊
+
+## How this small application started
+
+Being university students, my friends and I often had to stick to a budget, so having one person pay for everyone's food and drinks at a party, especially with larger groups of 20 or more people, rarely happened. As a result, we would usually split the costs of food and drinks. To ensure fairness at a recent party, we decided to divide the expenses depending on how much each person consumed instead of spliting costs evenly. The categories of consumption that we relied on included: none, light, medium, and heavy. 
+Tracking the exact amount of food and drinks consumed by each individual on paper was challenging, so we resorted to using an Excel spreadsheet. That being said, it wasn’t the smoothest tool to use. Nonetheless, it got the job done. This experience inspired me to create this application which was also great opportunity for me to practice Typescript, React, and Redux. Overall, this application turned out to be much more user-friendly than the Excel spreadsheet. It allowed anyone to easily handle adding, editing, or deleting individuals, as well as experimenting with different pricing ratios or percentages. This was especially helpful for those who were not familiar with using Excel! 
