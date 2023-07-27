@@ -5,7 +5,29 @@ import EditIcon from '@mui/icons-material/Edit';
 import PriceSetting from "./PriceSetting";
 import { totalPriceSelector } from "../../../slices/totalPricesSettingSlice";
 
-const cardStyle = { display: 'flex', width: 300, height:70, flexDirection: "row", justifyContent: 'space-between', boxShadow: 2, borderRadius: 3, m:1, p:1 };
+const cardStyle = {
+  display: "flex",
+  width: "60%", 
+  height: 70,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  boxShadow: 2,
+  borderRadius: 3,
+  m: 1,
+  p: 1,
+  '@media (min-width: 500px)': {
+    width: "60%", p: 1,
+  },
+};
+
+// const cardStyle = {
+  // '@media (min-width: 500px)': {
+  //   width: "100%", borderRadius: "20px", p: 1, height: 540
+  // },
+  // '@media (max-width: 500px)': {
+  //   width: "80%", borderRadius: "20px", p: 1, height: 400
+  // },
+// }
 
 const PriceCard = () => {
 

@@ -6,6 +6,19 @@ import {useEffect} from "react"
 import { calculateWeightClassPrices } from "../../slices/weightClassPriceSlice";
 import { weightDecimalsSelector } from "../../slices/weightClassPriceSlice";
 
+const cardStyle = {
+  borderRadius: "20px",
+  p: 1,
+  width: "100%",
+  height: 540,
+  "@media (max-width: 500px)": {
+    width: "95%",
+    borderRadius: "20px",
+    p: 1,
+    height: 400,
+  },
+};
+
 const AllPersons = () => {
 
   const dispatch = useDispatch();
@@ -19,22 +32,22 @@ const AllPersons = () => {
     dispatch(calculateWeightClassPrices({ persons, weightDecimals, prices }));
   }, [dispatch, persons, weightDecimals, prices]);
 
-    return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Card sx={{ width: "100%", maxWidth: 500, borderRadius: "20px", p: 1, height: 540}}>
-          {!(persons.length === 0) ? (
-            <List sx={{ height: "100%", overflow: "auto" }}>
-              {persons.map((person) => (
-                <Person key={person.id} person={person} />
-              ))}
-            </List>
-          ) : (
-            <Box
-              sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%"}}>
-              <Typography variant="h5" color="text.secondary">Please Add People!</Typography>
-            </Box>
-          )}
-        </Card>
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Card sx={cardStyle}>
+        {!(persons.length === 0) ? (
+          <List sx={{ height: "100%", overflow: "auto" }}>
+            {persons.map((person) => (
+              <Person key={person.id} person={person} />
+            ))}
+          </List>
+        ) : (
+          <Box
+            sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%",}}>
+            <Typography variant="h5" color="text.secondary">Please Add People!</Typography>
+          </Box>
+        )}
+      </Card>
       </div>
     );
 }

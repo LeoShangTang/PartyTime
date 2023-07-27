@@ -36,7 +36,9 @@ const Header = () => {
             style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}
           >
             <PriceCard />
-            <NewButton handleOpen={handleFormOpen} />
+            <Box sx={{ ml: 1, mr: 1 }}>
+              <NewButton handleOpen={handleFormOpen} />
+            </Box>
             <SettingsButton handleOpen={handleSettingOpen} />
           </div>
         </Box>

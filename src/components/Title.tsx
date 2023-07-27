@@ -1,13 +1,23 @@
 import {Box, Typography} from '@mui/material';
 import logo from '../images/logo.png';
 
+
+const fontSize = {
+  fontFamily: "Josefin Sans, Arial",
+  pr: 3,
+  "@media (max-width: 500px)": {
+    fontSize: "200%",
+  },
+};
+
+
 const Title = () => {
     return (
-      <Box sx={{ width: "100%", maxWidth: 500, p: 1, mr: 1 }}>
+      <Box sx={{ width: "100%", p: 1, mr: 1 }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Typography
-            variant="h3"
-            sx={{ fontFamily: "Josefin Sans, Arial", pr: 3 }}
+            variant='h3'
+            sx={fontSize}
           >
             Party Calculator
           </Typography>
