@@ -1,4 +1,4 @@
-import { CardActions, ListItem, Card, CardContent, Typography, Grid, IconButton } from '@mui/material';
+import { CardActions, ListItem, Card, CardContent, Typography, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { removePerson } from '../../slices/peopleSlice';
 import MoreInfo from './MoreInfo';
@@ -16,34 +16,31 @@ const cardStyle = {
   justifyContent: "space-between",
   boxShadow: 2,
   borderRadius: 3,
- 
-  '@media (min-width: 500px)': {
-    minWidth: 440,
-    m: 1,
-    p: 1,
-  },
+  m: 1,
+  p: 1,
+  width: "100%",
   '@media (max-width: 500px)': {
-    maxHeight: 60,
-    minWidth: 300
-  }
+    m:0,
+    p:0
+  },
+  "@media (max-height: 600px)": {
+    m:0,
+    p:0
+  },
 }
 
 const priceStyle = {
   color: "#71797E",
-  "@media (min-width: 500px)": {
-    minWidth: "130px",
-  },
-  "@media (max-width: 500px)": {
+  minWidth: "130px",
+  "@media (max-width: 600px)": {
     minWidth: "60px",
     fontSize: "120%"
   },
 };
 
 const nameStyle = {
-  "@media (min-width: 500px)": {
-    minWidth: "120px",
-  },
-  "@media (max-width: 500px)": {
+  minWidth: "120px",
+  "@media (max-width: 600px)": {
     minWidth: "70px",
     fontSize: "120%"
   },

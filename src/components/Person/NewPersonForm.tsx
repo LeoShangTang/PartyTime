@@ -6,11 +6,27 @@ import { useRef, FormEvent, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPerson } from '../../slices/peopleSlice';
 import IPerson from '../../utils/Types/IPerson';
-import validateType from './WeightValidator';
+import validateWeightType from '../../utils/Validator/WeightValidator';
 
 type Props = {
   handleClose: () => void;
 };
+
+const boxStyle = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  borderRadius: 5,
+  p: 4,
+  "@media (max-width: 600px)": {
+    width:300,
+  },
+  "& > :not(style)": { m: 2,  width: "90%"} 
+}
 
 const NewForm = ({handleClose} : Props) => {
 
@@ -26,15 +42,15 @@ const NewForm = ({handleClose} : Props) => {
       id: crypto.randomUUID(),
       name: nameRef.current?.value || "",
       contact: contactRef.current?.value || "",
-      food: validateType(foodRef.current?.value),
-      drinks: validateType(drinksRef.current?.value),
+      food: validateWeightType(foodRef.current?.value),
+      drinks: validateWeightType(drinksRef.current?.value),
     };
     dispatch(addPerson({person: newPerson}));
     handleClose();
   }, [handleClose, dispatch]);
 
     return (
-      <Box component="form" sx={{ "& > :not(style)": { m: 2,  width: "90%" }}} onSubmit={handleSubmit}>
+      <Box component="form" sx={boxStyle} onSubmit={handleSubmit}>
         <Typography variant="h6" component="h2" sx={{textAlign:"center"}}>
           Add Person
         </Typography>

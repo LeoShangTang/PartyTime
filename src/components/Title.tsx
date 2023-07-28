@@ -5,7 +5,7 @@ import logo from '../images/logo.png';
 const fontSize = {
   fontFamily: "Josefin Sans, Arial",
   pr: 3,
-  "@media (max-width: 500px)": {
+  "@media (max-width: 600px)": {
     fontSize: "200%",
   },
 };

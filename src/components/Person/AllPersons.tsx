@@ -11,11 +11,12 @@ const cardStyle = {
   p: 1,
   width: "100%",
   height: 540,
-  "@media (max-width: 500px)": {
+  "@media (max-width: 600px)": {
     width: "95%",
-    borderRadius: "20px",
-    p: 1,
     height: 400,
+  },
+  "@media (max-height: 600px)": {
+    height: 350,
   },
 };
 

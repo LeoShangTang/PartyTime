@@ -26,6 +26,9 @@ const boxStyle = {
   boxShadow: 24,
   borderRadius: 5,
   p: 4,
+  "@media (max-width: 600px)": {
+    width: 300,
+  },
   "& > :not(style)": { m: 2, width: "90%" }
 };
 

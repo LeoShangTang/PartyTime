@@ -15,19 +15,10 @@ const cardStyle = {
   borderRadius: 3,
   m: 1,
   p: 1,
-  '@media (min-width: 500px)': {
-    width: "60%", p: 1,
+  "@media (max-height: 700px)": {
+    height: 60,
   },
 };
-
-// const cardStyle = {
-  // '@media (min-width: 500px)': {
-  //   width: "100%", borderRadius: "20px", p: 1, height: 540
-  // },
-  // '@media (max-width: 500px)': {
-  //   width: "80%", borderRadius: "20px", p: 1, height: 400
-  // },
-// }
 
 const PriceCard = () => {
 

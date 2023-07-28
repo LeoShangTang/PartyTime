@@ -4,7 +4,7 @@ import { Box, Button, TextField, MenuItem, InputAdornment } from "@mui/material"
 import { updatePerson } from "../../slices/peopleSlice";
 import foodDrinkDropMenu from "../../utils/FoodDrink/DropMenu";
 import IPerson from "../../utils/Types/IPerson";
-import validateType from "./WeightValidator";
+import validateWeightType  from "../../utils/Validator/WeightValidator";
 
 type Props = {
     person: IPerson,
@@ -25,6 +25,9 @@ const boxStyle = {
     boxShadow: 24,
     borderRadius: 5,
     p: 4,
+    "@media (max-width: 600px)": {
+      width: 300,
+    },
     "& > :not(style)": { m: 2, width: "90%" }
   };
   
@@ -42,8 +45,8 @@ const EditPerson = ({person, handleClose, prices} : Props) => {
         id: person.id,
         name: nameRef.current?.value || "",
         contact: contactRef.current?.value || "",
-        food: validateType(foodRef.current?.value),
-        drinks: validateType(drinksRef.current?.value),
+        food: validateWeightType (foodRef.current?.value),
+        drinks: validateWeightType (drinksRef.current?.value),
       };
       dispatch(updatePerson({ updatedData }));
       handleClose();

@@ -1,21 +1,16 @@
 import {Box, Modal} from '@mui/material';
 import NewButton from "./Buttons/NewButton";
-import NewForm from "../Person/NewPersonForm";
+import NewPersonForm from "../Person/NewPersonForm";
 import SettingsForm from "./Settings/SettingsForm";
-import { useState } from "react";
 import SettingsButton from "./Buttons/SettingsButton";
 import PriceCard from "./PartyPrice/PriceCard";
+import { useState } from "react";
 
 const boxStyle = {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    borderRadius: 5,
-    p: 4,
   }
 
 const Header = () => {
@@ -50,17 +45,19 @@ const Header = () => {
           </Box>
         </>
       </Modal>
+      
+      <div style={{display:"flex", justifyContent: "center", alignItems: "center"}}>
       <Modal
         open={formOpen}
         onClose={handleFormClose}
-        sx={{ justifyContent: "center" }}
       >
         <>
           <Box sx={boxStyle}>
-            <NewForm handleClose={handleFormClose} />
+            <NewPersonForm handleClose={handleFormClose} />
           </Box>
         </>
       </Modal>
+        </div>
     </>
   );
 }
