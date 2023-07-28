@@ -4,7 +4,9 @@
 
 ## Overview
 
-Welcome to the Party Time App! This app is designed to help calculate the cost of food and drinks at your party without any hassle.
+Welcome to the Party Time App! This app is designed to help calculate the cost of food and drinks at your party without any hassle. You can visit the application by pressing [here!](https://party-calculator-be0e4.web.app/)
+
+<br>
 
 ## Features
 
@@ -23,6 +25,8 @@ Everyone's appetite is different! With this feature, you can set different optio
 ### 4. Settings Customization
 
 Tailor the app to your specific needs. Easily adjust the price percentages for food and drinks that all guests consume. Personalize your user interface by using the theme toggler.
+
+<br>
 
 ## How to Use
 
@@ -46,6 +50,8 @@ Above the list, you will find a text field displaying a price along with a penci
 
 Above the list, locate the gear icon button. Clicking this icon will bring up a form to change the pricing ratios as well as toggling the theme.
 
+<br>
+
 ## Future Improvements
 
 ### 1. Temporarily Saving Data
@@ -65,3 +71,15 @@ Some code can be refactored into smaller React components. This will help clean 
 At present, the application only considers food and drink prices. However, there is room for expansion based on user demand.
 
 Let's get the party started with Party Time App! 🎉🎊
+
+<br>
+
+## How this small application started
+
+Being university students, my friends and I often had to stick to a budget, so having one person pay for everyone's food and drinks at a party, especially with larger groups of 20 or more people, rarely happened. As a result, we would usually split the costs of food and drinks. To ensure fairness at a recent party, we decided to divide the expenses depending on how much each person consumed instead of spliting costs evenly. The categories of consumption that we relied on included: none, light, medium, and heavy. 
+
+Tracking the exact amount of food and drinks consumed by each individual on paper was challenging, so we resorted to using an Excel spreadsheet. That being said, it wasn’t the smoothest tool to use. Nonetheless, it got the job done. This experience inspired me to create this application which was also a great opportunity for me to practice Typescript, React, and Redux. Overall, this application turned out to be more user-friendly than the Excel spreadsheet. It allowed anyone to easily handle adding, editing, or deleting individuals, as well as experimenting with different pricing ratios or percentages. This was especially helpful for those who were not familiar with using Excel! 
+
+<br>
+
+**Note**: The icon or dinosaur image that I use is from [here!](https://www.flaticon.com/free-icon/birthday_817842)
