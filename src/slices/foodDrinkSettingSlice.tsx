@@ -9,12 +9,18 @@ type IFoodDrinkState = {
     none: number
 }
 
-const initialState: IFoodDrinkState = {
+let initialState: IFoodDrinkState = {
     heavy: 60,
     medium: 30,
     light: 10,
     none: 0
   };
+
+  const foodDrinkRatios = localStorage.getItem("foodDrinkRatios");
+  
+  if (foodDrinkRatios) {
+    initialState = JSON.parse(foodDrinkRatios);
+  }
   
 export const foodDrinkSlice = createSlice({
     name: "foodDrink",
@@ -25,8 +31,9 @@ export const foodDrinkSlice = createSlice({
             state.heavy = heavyPercent;
             state.medium = mediumPercent;
             state.light = lightPercent;
+            localStorage.setItem("foodDrinkRatios", JSON.stringify(state))
         }
-    }
+    },
 })
 
 export const foodDrinkSettingsSelector = createSelector(

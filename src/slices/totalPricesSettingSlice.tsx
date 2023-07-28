@@ -7,11 +7,16 @@ type ITotalPrice = {
     totalFoodPrice: number,
 }
 
-const initialState: ITotalPrice = {
+let initialState: ITotalPrice = {
     totalDrinkPrice: 0,
     totalFoodPrice: 0,
   };
   
+const totalPrices = localStorage.getItem("totalPrices");
+  
+if (totalPrices) {
+  initialState = JSON.parse(totalPrices);
+}
 
 const totalPriceSlice = createSlice({
     name: "totalPrice",
@@ -21,6 +26,7 @@ const totalPriceSlice = createSlice({
             const {totalDrinkPrice, totalFoodPrice} = action.payload;
             state.totalDrinkPrice = Number(totalDrinkPrice);
             state.totalFoodPrice = Number(totalFoodPrice);
+            localStorage.setItem("totalPrices", JSON.stringify(state));
         }
     }
 })

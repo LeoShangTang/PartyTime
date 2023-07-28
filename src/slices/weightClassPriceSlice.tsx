@@ -3,10 +3,16 @@ import IPerson from "../utils/Types/IPerson";
 import { RootState } from "../store";
 import { createSelector } from "@reduxjs/toolkit";
 
-const initialState = {
+let initialState = {
     drinkPrices: { light: 0, medium:0, heavy: 0 },
     foodPrices: { light: 0, medium: 0, heavy: 0 },
   }
+
+const weightClassPrices = localStorage.getItem("weightClassPrices");
+  
+if (weightClassPrices) {
+  initialState = JSON.parse(weightClassPrices);
+}
 
 const weightClassPriceSlice = createSlice({
   name: "weightClassCounter",
@@ -68,6 +74,7 @@ const weightClassPriceSlice = createSlice({
         medium: mediumFoodPrice,
         heavy: heavyFoodPrice,
       };
+      localStorage.setItem("weightClassPrices", JSON.stringify(state));
     },
   },
 });

@@ -5,9 +5,15 @@ export interface ThemeState {
   mode: PaletteMode;
 }
 
-const initialState: ThemeState = {
+let initialState: ThemeState = {
   mode: "dark",
 };
+
+const theme = localStorage.getItem("theme");
+  
+if (theme) {
+  initialState = JSON.parse(theme);
+}
 
 export const themeModeSlice = createSlice({
   name: "theme",
@@ -19,6 +25,7 @@ export const themeModeSlice = createSlice({
       } else {
         state.mode = "dark";
       }
+      localStorage.setItem("theme", JSON.stringify(state));
     },
   },
 });
