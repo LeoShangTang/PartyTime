@@ -54,19 +54,15 @@ Above the list, locate the gear icon button. Clicking this icon will bring up a 
 
 ## Future Improvements
 
-### 1. Temporarily Saving Data
-
-One of the primary future plans is to enhance the application by implementing temporary data storage through user cookies. This improvement will allow the application to retain user data, addressing the current limitation of data loss.
-
-### 2. Code Clean Up
+### 1. Code Clean Up
 
 The code base requires some clean-up, especially concerning improper naming conventions, which have contributed to confusion in certain parts of the code.
 
-### 3. Component Clean Up
+### 2. Component Clean Up
 
 Some code can be refactored into smaller React components. This will help clean up code in larger components and make the project more scalable for the future.
 
-### 4. More Prices!!!
+### 3. More Prices!!!
 
 At present, the application only considers food and drink prices. However, there is room for expansion based on user demand.
 
